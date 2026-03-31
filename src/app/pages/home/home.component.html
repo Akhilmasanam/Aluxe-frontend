@@ -1,0 +1,49 @@
+<div class="home">
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>✨ ALUXE</h1>
+      <h2>Akki Luxe — Premium Fashion &amp; Jewelry</h2>
+      <p>Discover exclusive collections of jewelry, sarees, clothing, and beauty products</p>
+      <button mat-raised-button color="primary" routerLink="/products" class="cta-button">
+        <mat-icon>shopping_bag</mat-icon> Shop Now
+      </button>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured">
+    <div class="section-header">
+      <h2>Featured Products</h2>
+      <p>Handpicked luxury items just for you</p>
+    </div>
+
+    @if (loading()) {
+      <div class="loading"><p>Loading featured products…</p></div>
+    } @else if (featuredProducts().length > 0) {
+      <div class="products-grid">
+        @for (product of featuredProducts(); track product.id) {
+          <app-product-card [product]="product" (addToCart)="addToCart(product)" />
+        }
+      </div>
+    } @else {
+      <div class="loading"><p>No featured products yet.</p></div>
+    }
+  </section>
+
+  <!-- Categories -->
+  <section class="categories">
+    <div class="section-header">
+      <h2>Shop By Category</h2>
+    </div>
+    <div class="categories-grid">
+      @for (cat of categories; track cat.slug) {
+        <div class="category-card" [routerLink]="['/products']" [queryParams]="{ category: cat.slug }">
+          <div class="category-icon">{{ cat.icon }}</div>
+          <h3>{{ cat.label }}</h3>
+          <p>{{ cat.desc }}</p>
+        </div>
+      }
+    </div>
+  </section>
+</div>

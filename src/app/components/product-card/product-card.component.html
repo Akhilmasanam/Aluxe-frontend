@@ -1,0 +1,42 @@
+<mat-card class="product-card">
+  <div class="product-image-container">
+    <img [src]="product.image || 'assets/placeholder.png'" [alt]="product.name" class="product-image" />
+    @if (product.discountPrice) {
+      <div class="discount-badge">Sale</div>
+    }
+  </div>
+
+  <mat-card-content>
+    <h3 class="product-name">{{ product.name }}</h3>
+
+    <div class="product-category">
+      {{ product.category | uppercase }}
+    </div>
+
+    <div class="product-rating">
+      <mat-icon>star</mat-icon>
+      <span>{{ product.rating | number:'1.1-1' }}</span>
+      <span class="reviews">({{ product.reviews }})</span>
+    </div>
+
+    <div class="product-price">
+      <span class="current-price">${{ product.discountPrice ?? product.price }}</span>
+      @if (product.discountPrice) {
+        <span class="original-price">${{ product.price }}</span>
+      }
+    </div>
+
+    <div class="stock-status" [class.in-stock]="product.stock > 0" [class.out-of-stock]="product.stock === 0">
+      {{ product.stock > 0 ? 'In Stock' : 'Out of Stock' }}
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" [routerLink]="['/product', product.id]">
+        <mat-icon>visibility</mat-icon> View
+      </button>
+      <button mat-raised-button (click)="onAddToCart()" [disabled]="product.stock === 0">
+        <mat-icon>shopping_cart</mat-icon> Add
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

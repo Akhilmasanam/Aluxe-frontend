@@ -1,0 +1,46 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="navbar-container">
+    <a routerLink="/" class="navbar-brand">
+      <span class="logo">✨ ALUXE</span>
+    </a>
+
+    <div class="navbar-center">
+      <a routerLink="/products" routerLinkActive="active" class="nav-link">Products</a>
+    </div>
+
+    <div class="navbar-end">
+      <button
+        mat-icon-button
+        routerLink="/cart"
+        [matBadge]="cartService.cartCount() || null"
+        matBadgeColor="warn"
+        aria-label="Shopping cart"
+      >
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+
+      @if (!authService.currentUser()) {
+        <button mat-icon-button [matMenuTriggerFor]="guestMenu" aria-label="Account">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #guestMenu="matMenu">
+          <button mat-menu-item routerLink="/login">Login</button>
+          <button mat-menu-item routerLink="/register">Register</button>
+        </mat-menu>
+      } @else {
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="My account">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item routerLink="/profile">My Profile</button>
+          <button mat-menu-item routerLink="/orders">My Orders</button>
+          @if (authService.isAdmin()) {
+            <button mat-menu-item routerLink="/admin">Admin Dashboard</button>
+          }
+          <mat-divider />
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      }
+    </div>
+  </div>
+</mat-toolbar>

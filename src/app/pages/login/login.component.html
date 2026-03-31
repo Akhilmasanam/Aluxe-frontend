@@ -1,0 +1,41 @@
+<div class="auth-page">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1>✨ ALUXE</h1>
+      <h2>Login</h2>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" autocomplete="email" />
+          @if (form.get('email')?.invalid && form.get('email')?.touched) {
+            <mat-error>Valid email is required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" [type]="showPassword() ? 'text' : 'password'" autocomplete="current-password" />
+          <button mat-icon-button matSuffix type="button" (click)="togglePassword()">
+            <mat-icon>{{ showPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          @if (form.get('password')?.invalid && form.get('password')?.touched) {
+            <mat-error>Password is required</mat-error>
+          }
+        </mat-form-field>
+
+        @if (errorMessage()) {
+          <div class="error-message">{{ errorMessage() }}</div>
+        }
+
+        <button type="submit" mat-raised-button color="primary" class="submit-btn" [disabled]="loading()">
+          {{ loading() ? 'Logging in…' : 'Login' }}
+        </button>
+      </form>
+
+      <div class="auth-link">
+        Don't have an account? <a routerLink="/register">Register here</a>
+      </div>
+    </div>
+  </div>
+</div>

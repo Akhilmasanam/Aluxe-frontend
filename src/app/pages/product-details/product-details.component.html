@@ -1,0 +1,84 @@
+<div class="product-details-page">
+  <button mat-button routerLink="/products" class="back-button">
+    <mat-icon>arrow_back</mat-icon> Back to Products
+  </button>
+
+  @if (loading()) {
+    <div class="loading"><p>Loading product details…</p></div>
+  } @else if (product(); as p) {
+    <div class="product-details-container">
+      <!-- Product Images -->
+      <div class="product-images">
+        <div class="main-image">
+          <img [src]="p.image || 'assets/placeholder.png'" [alt]="p.name" />
+        </div>
+        @if (p.additionalImages?.length) {
+          <div class="thumbnail-images">
+            @for (img of p.additionalImages!; track img) {
+              <img [src]="img" [alt]="p.name" />
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <div class="product-header">
+          <h1>{{ p.name }}</h1>
+          <span class="category">{{ p.category | uppercase }}</span>
+        </div>
+
+        <div class="rating">
+          <span class="stars">★ {{ p.rating | number:'1.1-1' }}</span>
+          <span class="reviews">({{ p.reviews }} reviews)</span>
+        </div>
+
+        <div class="pricing">
+          <div class="price">
+            <span class="current">${{ p.discountPrice ?? p.price }}</span>
+            @if (p.discountPrice) {
+              <span class="original">${{ p.price }}</span>
+            }
+          </div>
+          @if (p.discountPrice) {
+            <div class="discount">Save {{ getDiscount(p) }}%</div>
+          }
+        </div>
+
+        <div class="description">
+          <h3>Description</h3>
+          <p>{{ p.description }}</p>
+        </div>
+
+        <div class="stock-info" [class.in-stock]="p.stock > 0" [class.out-of-stock]="p.stock === 0">
+          {{ p.stock > 0 ? 'In Stock (' + p.stock + ')' : 'Out of Stock' }}
+        </div>
+
+        <div class="quantity-selector">
+          <label>Quantity:</label>
+          <input type="number" [(ngModel)]="quantity" [min]="1" [max]="p.stock" />
+        </div>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" (click)="addToCart()" [disabled]="p.stock === 0">
+            <mat-icon>shopping_cart</mat-icon> Add to Cart
+          </button>
+          <button mat-raised-button>
+            <mat-icon>favorite_border</mat-icon> Wishlist
+          </button>
+        </div>
+
+        <div class="additional-info">
+          <h3>Additional Information</h3>
+          <ul>
+            <li><strong>SKU:</strong> {{ p.id | slice:0:8 }}</li>
+            <li><strong>Category:</strong> {{ p.category }}</li>
+            <li><strong>Availability:</strong> {{ p.stock > 0 ? 'Available' : 'Not Available' }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="loading"><p>Product not found.</p></div>
+  }
+</div>
