@@ -28,7 +28,7 @@ import { Order, Product } from '../../models';
     SlicePipe,
   ],
   templateUrl: './admin-dashboard.component.html',
-  styleUrl: './admin-dashboard.component.scss',
+  styleUrls: ['./admin-dashboard.component.scss'],
 })
 export class AdminDashboardComponent implements OnInit {
   private readonly productService = inject(ProductService);

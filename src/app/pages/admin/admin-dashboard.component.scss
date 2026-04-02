@@ -1,0 +1,310 @@
+// Admin Dashboard Component Styles with Responsive Design
+
+// Variables
+$primary-color: #1976d2;
+$accent-color: #ff4081;
+$hover-color: rgba(25, 118, 210, 0.1);
+$border-color: #e0e0e0;
+$text-color: #333;
+$bg-light: #f5f5f5;
+
+// Responsive Breakpoints
+$mobile: 576px;
+$tablet: 768px;
+$desktop: 1024px;
+
+// Mobile First - Base Styles (Mobile < 576px)
+.admin-dashboard {
+  padding: 16px;
+  background-color: $bg-light;
+  min-height: 100vh;
+
+  .dashboard-header {
+    margin-bottom: 20px;
+
+    h1 {
+      font-size: 24px;
+      color: $text-color;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      font-size: 14px;
+    }
+  }
+
+  .tabs-container {
+    margin-bottom: 20px;
+
+    ::ng-deep .mat-mdc-tab-labels {
+      flex-wrap: wrap;
+    }
+  }
+
+  // Form Styles
+  .product-form {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .form-group {
+      margin-bottom: 16px;
+
+      label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: $text-color;
+        font-size: 14px;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        font-size: 14px;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+          box-shadow: 0 0 4px rgba(25, 118, 210, 0.2);
+        }
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // Table Styles
+  .table-container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+
+    // Mobile Table Scroll
+    overflow-x: auto;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+
+      thead {
+        background-color: #f9f9f9;
+        border-bottom: 2px solid $border-color;
+
+        th {
+          padding: 12px;
+          text-align: left;
+          font-weight: 600;
+          color: $text-color;
+          white-space: nowrap;
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid $border-color;
+          transition: background-color 0.2s ease;
+
+          &:hover {
+            background-color: $hover-color;
+          }
+
+          td {
+            padding: 12px;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+
+  // Action Buttons
+  .action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    button {
+      padding: 6px 12px;
+      font-size: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.edit {
+        background-color: #4caf50;
+        color: white;
+
+        &:hover {
+          background-color: darken(#4caf50, 10%);
+        }
+      }
+
+      &.delete {
+        background-color: #f44336;
+        color: white;
+
+        &:hover {
+          background-color: darken(#f44336, 10%);
+        }
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .text-muted {
+    color: #999;
+    font-size: 13px;
+  }
+}
+
+// Tablet Styles (576px - 768px)
+@media (min-width: $mobile) {
+  .admin-dashboard {
+    padding: 20px;
+
+    .dashboard-header {
+      h1 {
+        font-size: 28px;
+      }
+    }
+
+    .product-form {
+      padding: 20px;
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+
+      button {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .table-container {
+      table {
+        font-size: 14px;
+
+        th,
+        td {
+          padding: 14px;
+        }
+      }
+    }
+  }
+}
+
+// Tablet/Desktop Transition (768px)
+@media (min-width: $tablet) {
+  .admin-dashboard {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .tabs-container {
+      ::ng-deep .mat-mdc-tab-labels {
+        flex-wrap: nowrap;
+      }
+    }
+
+    .product-form {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+
+      button {
+        grid-column: 1 / 2;
+        width: auto;
+      }
+    }
+
+    .table-container {
+      overflow-x: visible;
+
+      table {
+        font-size: 15px;
+
+        th,
+        td {
+          padding: 16px;
+        }
+      }
+    }
+  }
+}
+
+// Desktop Styles (1024px+)
+@media (min-width: $desktop) {
+  .admin-dashboard {
+    padding: 32px;
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 0;
+      }
+    }
+
+    .product-form {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .action-buttons {
+      gap: 12px;
+
+      button {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+// Large Desktop (1440px+)
+@media (min-width: 1440px) {
+  .admin-dashboard {
+    padding: 40px;
+    max-width: 1400px;
+  }
+}

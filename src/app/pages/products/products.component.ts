@@ -21,7 +21,7 @@ interface ProductFilters {
   standalone: true,
   imports: [FormsModule, MatButtonModule, MatIconModule, ProductCardComponent],
   templateUrl: './products.component.html',
-  styleUrl: './products.component.scss',
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
   private readonly productService = inject(ProductService);

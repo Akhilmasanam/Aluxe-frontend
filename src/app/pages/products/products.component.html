@@ -1,69 +1,186 @@
 <div class="products-page">
+  <!-- Page Header with Background -->
+  <div class="page-hero">
+    <div class="hero-content">
+      <h1 class="page-title">Discover Our Collection</h1>
+      <p class="page-subtitle">Explore our curated selection of premium products</p>
+    </div>
+  </div>
+
   <div class="products-container">
     <!-- Filters Sidebar -->
     <aside class="filters-sidebar">
-      <h3>Filters</h3>
-
-      <div class="filter-group">
-        <label>Search</label>
-        <input [(ngModel)]="filters.search" placeholder="Product name…" type="text" />
-        <button mat-button (click)="applyFilters()">Search</button>
+      <div class="filters-header">
+        <h3>
+          <mat-icon>tune</mat-icon>
+          FiltersProducts
+        </h3>
       </div>
 
+      <!-- Search Filter -->
       <div class="filter-group">
-        <label>Category</label>
-        <select [(ngModel)]="filters.category" (change)="applyFilters()">
-          <option value="">All Categories</option>
-          <option value="jewelry">Jewelry</option>
-          <option value="sarees">Sarees</option>
-          <option value="clothing">Clothing</option>
-          <option value="beauty">Beauty</option>
-        </select>
+        <label class="filter-label">
+          <mat-icon>search</mat-icon>
+          Search Products
+        </label>
+        <div class="search-input-wrapper">
+          <input
+            [(ngModel)]="filters.search"
+            placeholder="Type product name…"
+            type="text"
+            class="search-input"
+          />
+          <button mat-icon-button (click)="applyFilters()" class="search-btn">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
       </div>
 
+      <!-- Category Filter -->
       <div class="filter-group">
-        <label>Price Range: ${{ filters.minPrice }} – ${{ filters.maxPrice }}</label>
-        <input type="range" min="0" max="10000" [(ngModel)]="filters.minPrice" (change)="applyFilters()" />
-        <input type="range" min="0" max="10000" [(ngModel)]="filters.maxPrice" (change)="applyFilters()" />
+        <label class="filter-label">
+          <mat-icon>category</mat-icon>
+          Category
+        </label>
+        <div class="category-options">
+          <div
+            class="category-chip"
+            [class.active]="filters.category === ''"
+            (click)="filters.category = ''; applyFilters()"
+          >
+            All
+          </div>
+          <div
+            class="category-chip"
+            [class.active]="filters.category === 'jewelry'"
+            (click)="filters.category = 'jewelry'; applyFilters()"
+          >
+            Jewelry
+          </div>
+          <div
+            class="category-chip"
+            [class.active]="filters.category === 'sarees'"
+            (click)="filters.category = 'sarees'; applyFilters()"
+          >
+            Sarees
+          </div>
+          <div
+            class="category-chip"
+            [class.active]="filters.category === 'clothing'"
+            (click)="filters.category = 'clothing'; applyFilters()"
+          >
+            Clothing
+          </div>
+          <div
+            class="category-chip"
+            [class.active]="filters.category === 'beauty'"
+            (click)="filters.category = 'beauty'; applyFilters()"
+          >
+            Beauty
+          </div>
+        </div>
       </div>
 
+      <!-- Price Range Filter -->
       <div class="filter-group">
-        <label>Sort By</label>
-        <select [(ngModel)]="filters.sortBy" (change)="applyFilters()">
-          <option value="">Newest</option>
+        <label class="filter-label">
+          <mat-icon>price_check</mat-icon>
+          Price Range
+        </label>
+        <div class="price-display">
+          <span class="price-tag">${{ filters.minPrice }}</span>
+          <span class="price-separator">–</span>
+          <span class="price-tag">${{ filters.maxPrice }}</span>
+        </div>
+        <input type="range" min="0" max="10000" [(ngModel)]="filters.minPrice" (change)="applyFilters()" class="price-slider" />
+        <input type="range" min="0" max="10000" [(ngModel)]="filters.maxPrice" (change)="applyFilters()" class="price-slider" />
+      </div>
+
+      <!-- Sort By Filter -->
+      <div class="filter-group">
+        <label class="filter-label">
+          <mat-icon>sort</mat-icon>
+          Sort By
+        </label>
+        <select [(ngModel)]="filters.sortBy" (change)="applyFilters()" class="sort-select">
+          <option value="">Newest First</option>
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
           <option value="rating">Top Rated</option>
         </select>
       </div>
 
-      <button mat-raised-button color="warn" (click)="resetFilters()">Reset Filters</button>
+      <!-- Reset Button -->
+      <button mat-raised-button class="reset-btn" (click)="resetFilters()">
+        <mat-icon>refresh</mat-icon>
+        Reset All Filters
+      </button>
     </aside>
 
     <!-- Products Grid -->
     <main class="products-main">
       <div class="products-header">
-        <h1>Products</h1>
-        <p class="product-count">{{ totalProducts() }} products found</p>
+        <div class="header-top">
+          <h2 class="results-title">Products</h2>
+          <span class="product-badge">{{ totalProducts() }} items</span>
+        </div>
+        <p class="header-subtitle">Showing results for your selection</p>
       </div>
 
+      <!-- Loading State -->
       @if (loading()) {
-        <div class="state-message"><p>Loading products…</p></div>
+        <div class="state-message loading-state">
+          <div class="spinner"></div>
+          <p>Loading amazing products…</p>
+        </div>
       } @else if (products().length > 0) {
+        <!-- Products Grid -->
         <div class="products-grid">
           @for (product of products(); track product.id) {
-            <app-product-card [product]="product" (addToCart)="addToCart(product)" />
+            <div class="product-wrapper">
+              <app-product-card [product]="product" (addToCart)="addToCart(product)" />
+            </div>
           }
         </div>
       } @else {
-        <div class="state-message"><p>No products found. Try adjusting your filters.</p></div>
+        <!-- Empty State -->
+        <div class="state-message empty-state">
+          <mat-icon class="empty-icon">shopping_bag</mat-icon>
+          <h3>No Products Found</h3>
+          <p>Try adjusting your filters or search terms</p>
+          <button mat-raised-button color="primary" (click)="resetFilters()">
+            <mat-icon>refresh</mat-icon>
+            Clear Filters
+          </button>
+        </div>
       }
 
+      <!-- Pagination -->
       @if (totalPages() > 1) {
         <div class="pagination">
-          <button mat-button [disabled]="currentPage() === 1" (click)="previousPage()">Previous</button>
-          <span>Page {{ currentPage() }} of {{ totalPages() }}</span>
-          <button mat-button [disabled]="currentPage() === totalPages()" (click)="nextPage()">Next</button>
+          <button
+            mat-icon-button
+            [disabled]="currentPage() === 1"
+            (click)="previousPage()"
+            class="pagination-btn"
+          >
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+
+          <div class="pagination-info">
+            <span class="page-number">{{ currentPage() }}</span>
+            <span class="pagination-divider">/</span>
+            <span class="total-pages">{{ totalPages() }}</span>
+          </div>
+
+          <button
+            mat-icon-button
+            [disabled]="currentPage() === totalPages()"
+            (click)="nextPage()"
+            class="pagination-btn"
+          >
+            <mat-icon>chevron_right</mat-icon>
+          </button>
         </div>
       }
     </main>

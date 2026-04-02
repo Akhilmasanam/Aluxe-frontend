@@ -1,11 +1,10 @@
 import { Component, ComponentRef, OnDestroy, OnInit, signal, ViewChild, ViewContainerRef } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { MicroFrontend } from './micro-frontend';
 
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
