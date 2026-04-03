@@ -29,6 +29,24 @@ export interface Product {
   updatedAt?: string;
 }
 
+export interface PriceRange {
+  min: number;
+  max: number;
+}
+
+export interface Pagination {
+  total: number;
+  page: number;
+  limit: number;
+  pages: number;
+}
+
+export interface ProductListResponse {
+  products: Product[];
+  priceRange: PriceRange;
+  pagination: Pagination;
+}
+
 export interface CartItem {
   productId: string;
   product?: Product;

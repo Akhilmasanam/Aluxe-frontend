@@ -88,12 +88,26 @@
           Price Range
         </label>
         <div class="price-display">
-          <span class="price-tag">${{ filters.minPrice }}</span>
+          <span class="price-tag">₹{{ filters.minPrice }}</span>
           <span class="price-separator">–</span>
-          <span class="price-tag">${{ filters.maxPrice }}</span>
+          <span class="price-tag">₹{{ filters.maxPrice }}</span>
         </div>
-        <input type="range" min="0" max="10000" [(ngModel)]="filters.minPrice" (change)="applyFilters()" class="price-slider" />
-        <input type="range" min="0" max="10000" [(ngModel)]="filters.maxPrice" (change)="applyFilters()" class="price-slider" />
+        <input
+          type="range"
+          [min]="availableMinPrice()"
+          [max]="availableMaxPrice()"
+          [ngModel]="filters.minPrice"
+          (ngModelChange)="onMinPriceChange($event)"
+          class="price-slider"
+        />
+        <input
+          type="range"
+          [min]="availableMinPrice()"
+          [max]="availableMaxPrice()"
+          [ngModel]="filters.maxPrice"
+          (ngModelChange)="onMaxPriceChange($event)"
+          class="price-slider"
+        />
       </div>
 
       <!-- Sort By Filter -->
@@ -111,7 +125,7 @@
       </div>
 
       <!-- Reset Button -->
-      <button mat-raised-button class="reset-btn" (click)="resetFilters()">
+      <button mat-raised-button class="reset-btn"  (click)="resetFilters()">
         <mat-icon>refresh</mat-icon>
         Reset All Filters
       </button>

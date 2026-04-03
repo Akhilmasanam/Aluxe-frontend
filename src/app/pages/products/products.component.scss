@@ -13,7 +13,11 @@ $text-light: #64748b;
 
 // Hero Section
 .page-hero {
-  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+ background: linear-gradient(
+      135deg,
+      #1a1a1a 0%,
+      #2d2d2d 50%,
+      #1a1a1a 100%);
   padding: clamp(2rem, 8vw, 4rem);
   color: white;
   text-align: center;
@@ -117,7 +121,8 @@ $text-light: #64748b;
     font-weight: 600;
 
     mat-icon {
-      color: $primary-color;
+      color: #282828;
+      // color: $primary-color;
       font-size: 1.3rem;
       width: 1.3rem;
       height: 1.3rem;
@@ -153,7 +158,8 @@ $text-light: #64748b;
     font-size: 1rem;
     width: 1rem;
     height: 1rem;
-    color: $primary-color;
+    color: #282828;
+    // color: $primary-color;
   }
 }
 
@@ -183,7 +189,8 @@ $text-light: #64748b;
 }
 
 .search-btn {
-  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  background: linear-gradient(331deg, #1f1f1f 0%, #1f1f1f 70%, #FFD764 100%);
+  // background: linear-gradient(135deg, $primary-color, $secondary-color);
   color: white;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -246,7 +253,7 @@ $text-light: #64748b;
 
 .price-tag {
   font-weight: 700;
-  color: $primary-color;
+  color: #282828;
   font-size: 1rem;
 }
 
@@ -270,7 +277,8 @@ $text-light: #64748b;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: linear-gradient(135deg, $primary-color, $secondary-color);
+      background: #282828;
+    // background: linear-gradient(135deg, $primary-color, $secondary-color);
     cursor: pointer;
     box-shadow: 0 2px 8px rgba($primary-color, 0.3);
     transition: all 0.3s ease;
@@ -322,8 +330,9 @@ $text-light: #64748b;
 // Reset Button
 .reset-btn {
   width: 100%;
-  background: linear-gradient(135deg, $primary-color, $secondary-color);
-  color: white;
+  background: linear-gradient(331deg, #1f1f1f 0%, #1f1f1f 70%, #FFD764 100%);
+  // background: linear-gradient(135deg, $primary-color, $secondary-color);
+  color: white !important;
   border-radius: 8px;
   padding: 0.75rem;
   font-weight: 600;
@@ -616,7 +625,7 @@ $bg-light: #f8fafc;
 
 // Hero Section
 .page-hero {
-  background: linear-gradient(135deg, $primary, $secondary);
+  // background: linear-gradient(135deg, $primary, $secondary);
   padding: 3rem 1rem;
   text-align: center;
   color: white;
@@ -689,9 +698,10 @@ $bg-light: #f8fafc;
 }
 
 .search-btn {
-  background: linear-gradient(135deg, $primary, $secondary);
+  // background: linear-gradient(135deg, $primary, $secondary);
   color: white;
   border-radius: 10px;
+  margin-left: 3.5%;
 }
 
 // Category chips
@@ -717,7 +727,8 @@ $bg-light: #f8fafc;
   }
 
   &.active {
-    background: linear-gradient(135deg, $primary, $secondary);
+    background: linear-gradient(331deg, #1f1f1f 0%, #1f1f1f 70%, #FFD764 100%);
+    // background: linear-gradient(135deg, $primary, $secondary);
     color: white;
     border: none;
     box-shadow: 0 4px 10px rgba($primary, 0.3);
@@ -747,7 +758,8 @@ $bg-light: #f8fafc;
 // Reset button
 .reset-btn {
   width: 100%;
-  background: linear-gradient(135deg, $primary, $secondary);
+  background: linear-gradient(331deg, #1f1f1f 0%, #1f1f1f 70%, #FFD764 100%);
+  // background: linear-gradient(135deg, $primary, $secondary);
   color: white;
   border-radius: 10px;
   padding: 0.7rem;
@@ -775,7 +787,8 @@ $bg-light: #f8fafc;
   }
 
   .product-badge {
-    background: linear-gradient(135deg, $primary, $secondary);
+    background: linear-gradient(331deg, #1f1f1f 0%, #1f1f1f 70%, #FFD764 100%);
+    // background: linear-gradient(135deg, $primary, $secondary);
     color: white;
     padding: 0.4rem 1rem;
     border-radius: 20px;
@@ -790,6 +803,7 @@ $bg-light: #f8fafc;
 
 // Products grid
 .products-grid {
+  margin-left: 2.5%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 1.5rem;

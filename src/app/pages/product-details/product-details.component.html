@@ -35,9 +35,9 @@
 
         <div class="pricing">
           <div class="price">
-            <span class="current">${{ p.discountPrice ?? p.price }}</span>
+            <span class="current">₹{{ p.discountPrice ?? p.price }}</span>
             @if (p.discountPrice) {
-              <span class="original">${{ p.price }}</span>
+              <span class="original">₹{{ p.price }}</span>
             }
           </div>
           @if (p.discountPrice) {

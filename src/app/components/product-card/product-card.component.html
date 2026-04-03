@@ -20,9 +20,9 @@
     </div>
 
     <div class="product-price">
-      <span class="current-price">${{ product.discountPrice ?? product.price }}</span>
+      <span class="current-price">₹{{ product.discountPrice ?? product.price }}</span>
       @if (product.discountPrice) {
-        <span class="original-price">${{ product.price }}</span>
+        <span class="original-price">₹{{ product.price }}</span>
       }
     </div>
 
