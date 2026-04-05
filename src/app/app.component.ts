@@ -1,16 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { NotificationsComponent } from './shared/components/notifications/notifications.component';
+import { LoadingOverlayComponent } from './shared/components/loading/loading-overlay.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  imports: [CommonModule, RouterOutlet, NotificationsComponent, LoadingOverlayComponent],
+  template: `
+    <router-outlet></router-outlet>
+    <app-notifications></app-notifications>
+    <app-loading-overlay></app-loading-overlay>
+  `,
+  styles: [`
+    :host {
+      display: block;
+    }
+  `],
 })
 export class AppComponent {
-  title = 'ALUXE - Akki Luxe';
+  title = 'ALUXE — Akki Luxe';
 }

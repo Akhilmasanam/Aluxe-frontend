@@ -44,38 +44,43 @@
         </label>
         <div class="category-options">
           <div
-            class="category-chip"
+            class="category-chip all-chip"
             [class.active]="filters.category === ''"
-            (click)="filters.category = ''; applyFilters()"
+            (click)="selectCategory('')"
           >
-            All
+            <mat-icon>apps</mat-icon>
+            All Products
           </div>
           <div
             class="category-chip"
             [class.active]="filters.category === 'jewelry'"
-            (click)="filters.category = 'jewelry'; applyFilters()"
+            (click)="selectCategory('jewelry')"
           >
+            <mat-icon>ring_volume</mat-icon>
             Jewelry
           </div>
           <div
             class="category-chip"
             [class.active]="filters.category === 'sarees'"
-            (click)="filters.category = 'sarees'; applyFilters()"
+            (click)="selectCategory('sarees')"
           >
+            <mat-icon>style</mat-icon>
             Sarees
           </div>
           <div
             class="category-chip"
             [class.active]="filters.category === 'clothing'"
-            (click)="filters.category = 'clothing'; applyFilters()"
+            (click)="selectCategory('clothing')"
           >
+            <mat-icon>checkroom</mat-icon>
             Clothing
           </div>
           <div
             class="category-chip"
             [class.active]="filters.category === 'beauty'"
-            (click)="filters.category = 'beauty'; applyFilters()"
+            (click)="selectCategory('beauty')"
           >
+            <mat-icon>spa</mat-icon>
             Beauty
           </div>
         </div>

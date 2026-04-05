@@ -1,0 +1,327 @@
+@import 'variables.scss';
+
+// ============================================
+// GLOBAL STYLES
+// ============================================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-body;
+  line-height: $line-height-normal;
+  color: $text-primary;
+  background-color: $bg-white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ============================================
+// TYPOGRAPHY
+// ============================================
+
+h1, .h1 {
+  @include premium-heading;
+  font-size: $font-size-h1;
+  line-height: $line-height-tight;
+  margin-bottom: $spacing-lg;
+}
+
+h2, .h2 {
+  @include premium-heading;
+  font-size: $font-size-h2;
+  line-height: $line-height-tight;
+  margin-bottom: $spacing-md;
+}
+
+h3, .h3 {
+  @include premium-heading;
+  font-size: $font-size-h3;
+  line-height: $line-height-tight;
+  margin-bottom: $spacing-md;
+}
+
+h4, .h4 {
+  @include premium-heading;
+  font-size: $font-size-h4;
+  margin-bottom: $spacing-sm;
+}
+
+h5, .h5 {
+  @include premium-heading;
+  font-size: $font-size-h5;
+  margin-bottom: $spacing-sm;
+}
+
+p {
+  margin-bottom: $spacing-md;
+  color: $text-secondary;
+  line-height: $line-height-relaxed;
+}
+
+a {
+  color: $accent-color;
+  text-decoration: none;
+  @include smooth-transition(color);
+
+  &:hover {
+    color: $accent-dark;
+  }
+}
+
+small {
+  font-size: $font-size-small;
+  color: $text-secondary;
+}
+
+strong {
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+}
+
+// ============================================
+// FORMS
+// ============================================
+
+input,
+textarea,
+select {
+  font-family: $font-family-primary;
+  font-size: $font-size-body;
+  color: $text-primary;
+
+  &::placeholder {
+    color: $text-secondary;
+  }
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+textarea,
+select {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  @include smooth-transition(all);
+
+  &:focus {
+    outline: none;
+    border-color: $accent-color;
+    box-shadow: 0 0 0 3px rgba($accent-color, 0.1);
+  }
+
+  &:disabled {
+    background-color: $bg-light;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: $spacing-xs;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+}
+
+// ============================================
+// BUTTONS
+// ============================================
+
+button,
+.button {
+  @include button-reset;
+  padding: $spacing-sm $spacing-lg;
+  font-size: $font-size-body;
+  font-weight: $font-weight-semibold;
+  border-radius: $border-radius-md;
+  @include smooth-transition(all);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-color;
+    outline-offset: 2px;
+  }
+}
+
+// Button variants
+.btn-primary {
+  background: linear-gradient(135deg, $accent-color 0%, $accent-dark 100%);
+  color: $primary-color;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+.btn-secondary {
+  background-color: $primary-color;
+  color: $accent-color;
+  border: 2px solid $accent-color;
+
+  &:hover:not(:disabled) {
+    background-color: $accent-color;
+    color: $primary-color;
+  }
+}
+
+.btn-light {
+  background-color: $bg-light;
+  color: $primary-color;
+
+  &:hover:not(:disabled) {
+    background-color: $border-color;
+  }
+}
+
+.btn-danger {
+  background-color: $error-color;
+  color: white;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    box-shadow: $shadow-lg;
+  }
+}
+
+.btn-success {
+  background-color: $success-color;
+  color: white;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    box-shadow: $shadow-lg;
+  }
+}
+
+.btn-sm {
+  padding: $spacing-xs $spacing-md;
+  font-size: $font-size-small;
+}
+
+.btn-lg {
+  padding: $spacing-md $spacing-xl;
+  font-size: $font-size-h5;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-icon {
+  padding: $spacing-sm;
+  border-radius: $border-radius-full;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+// ============================================
+// TABLES
+// ============================================
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: $spacing-lg;
+}
+
+th {
+  padding: $spacing-md;
+  text-align: left;
+  border-bottom: 2px solid $border-color;
+  background-color: $bg-light;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+}
+
+td {
+  padding: $spacing-md;
+  border-bottom: 1px solid $border-color;
+}
+
+tbody tr {
+  @include smooth-transition(background-color);
+
+  &:hover {
+    background-color: $bg-light;
+  }
+}
+
+// ============================================
+// SCROLLBAR STYLING
+// ============================================
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-light;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $accent-color;
+  border-radius: 4px;
+
+  &:hover {
+    background: $accent-dark;
+  }
+}
+
+// ============================================
+// RESPONSIVE UTILITIES
+// ============================================
+
+@media (max-width: 767px) {
+  h1, .h1 {
+    font-size: 2rem;
+  }
+
+  h2, .h2 {
+    font-size: 1.5rem;
+  }
+
+  h3, .h3 {
+    font-size: 1.2rem;
+  }
+}
+
+// Hide on mobile
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none;
+  }
+}
+
+// Hide on desktop
+@media (min-width: 768px) {
+  .hide-desktop {
+    display: none;
+  }
+}

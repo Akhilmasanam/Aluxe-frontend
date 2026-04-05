@@ -94,6 +94,11 @@ export class ProductsComponent implements OnInit {
     this.loadProducts();
   }
 
+  selectCategory(category: string): void {
+    this.filters.category = category;
+    this.applyFilters();
+  }
+
   onMinPriceChange(value: number | string): void {
     const nextValue = Number(value);
     this.hasActivePriceFilter = true;

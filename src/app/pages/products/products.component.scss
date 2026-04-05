@@ -226,10 +226,20 @@ $text-light: #64748b;
   white-space: nowrap;
   background: white;
   color: $text-dark;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  mat-icon {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+  }
 
   &:hover {
     border-color: $primary-color;
     background: rgba($primary-color, 0.05);
+    transform: translateY(-1px);
   }
 
   &.active {
@@ -237,6 +247,25 @@ $text-light: #64748b;
     color: white;
     border-color: transparent;
     box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+  }
+
+  &.all-chip {
+    background: linear-gradient(331deg, #1f1f1f 0%, #1f1f1f 70%, #FFD764 100%);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+
+    &:hover:not(.active) {
+      background: linear-gradient(331deg, #2a2a2a 0%, #2a2a2a 70%, #FFD764 100%);
+      transform: translateY(-1px);
+    }
+
+    &.active {
+      background: linear-gradient(331deg, #FFD764 0%, #FFD764 30%, #1f1f1f 100%);
+      color: #1f1f1f;
+      box-shadow: 0 6px 16px rgba(255, 215, 100, 0.4);
+    }
   }
 }
 

@@ -40,7 +40,7 @@ export class AdminDashboardComponent implements OnInit {
   readonly editingProduct = signal<Product | null>(null);
   readonly selectedImage = signal<File | null>(null);
 
-  readonly productColumns = ['name', 'category', 'price', 'stock', 'action'];
+  readonly productColumns = ['name', 'category', 'price', 'featured', 'stock', 'action'];
   readonly orderColumns = ['id', 'total', 'status', 'paymentStatus', 'date'];
 
   productForm = {
@@ -59,9 +59,16 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   loadProducts(): void {
+    console.log('Loading products...');
     this.productService.getProducts({ limit: 100 }).subscribe({
-      next: (res) => this.products.set(res.products),
-      error: (e) => console.error('Error loading products:', e),
+      next: (res) => {
+        console.log('Products loaded:', res);
+        this.products.set(res.products);
+        console.log('Products set to signal:', this.products());
+      },
+      error: (e) => {
+        console.error('Error loading products:', e);
+      },
     });
   }
 
@@ -111,7 +118,40 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   saveProduct(): void {
-    console.log('Saving product:', this.productForm);
+    const payload = new FormData();
+    payload.append('name', this.productForm.name);
+    payload.append('description', this.productForm.description);
+    payload.append('category', this.productForm.category);
+    payload.append('price', String(this.productForm.price));
+    payload.append('discountPrice', String(this.productForm.discountPrice));
+    payload.append('stock', String(this.productForm.stock));
+    payload.append('isFeatured', String(this.productForm.isFeatured));
+
+    if (this.selectedImage()) {
+      payload.append('image', this.selectedImage() as Blob);
+    }
+
+    const request$ = this.editingProduct()
+      ? this.productService.updateProduct(this.editingProduct()!.id, payload)
+      : this.productService.createProduct(payload);
+
+    request$.subscribe({
+      next: () => {
+        this.loadProducts();
+        this.resetProductForm();
+        this.showProductForm.set(false);
+      },
+      error: (e) => console.error('Error saving product:', e),
+    });
+  }
+
+  toggleFeatured(product: Product): void {
+    this.productService
+      .updateProductPartial(product.id, { isFeatured: !product.isFeatured })
+      .subscribe({
+        next: () => this.loadProducts(),
+        error: (e) => console.error('Error updating featured state:', e),
+      });
   }
 
   deleteProduct(id: string): void {

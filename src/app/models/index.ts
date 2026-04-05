@@ -17,12 +17,12 @@ export interface Product {
   name: string;
   description: string;
   category: 'jewelry' | 'sarees' | 'clothing' | 'beauty';
-  price: number;
-  discountPrice?: number;
+  price: string | number;
+  discountPrice?: string | number;
   stock: number;
   image: string;
   additionalImages?: string[];
-  rating: number;
+  rating: string | number;
   reviews: number;
   isFeatured: boolean;
   createdAt?: string;
@@ -30,8 +30,8 @@ export interface Product {
 }
 
 export interface PriceRange {
-  min: number;
-  max: number;
+  min: string | number;
+  max: string | number;
 }
 
 export interface Pagination {

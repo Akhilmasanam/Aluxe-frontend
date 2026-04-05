@@ -40,6 +40,23 @@ export class ProductService {
     return this.http.put<any>(`${this.apiUrl}/${id}`, product);
   }
 
+  updateProductPartial(id: string, data: Record<string, any>): Observable<any> {
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      const value = data[key];
+      if (value === undefined || value === null) {
+        return;
+      }
+
+      if (value instanceof File) {
+        formData.append(key, value);
+      } else {
+        formData.append(key, String(value));
+      }
+    });
+    return this.http.put<any>(`${this.apiUrl}/${id}`, formData);
+  }
+
   deleteProduct(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }

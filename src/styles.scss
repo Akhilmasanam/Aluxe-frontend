@@ -1,22 +1,6 @@
-/* Global Styles */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: #fafafa;
-  color: #1a1a1a;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
+/* Import theme and global styles */
+@import './styles/variables.scss';
+@import './styles/global.scss';
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {

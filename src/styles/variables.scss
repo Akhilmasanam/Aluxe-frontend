@@ -1,0 +1,330 @@
+// Global SCSS theme variables and mixins
+
+// ============================================
+// COLOR PALETTE
+// ============================================
+$primary-color: #1f1f1f; // Black
+$accent-color: #ffd764; // Gold
+$accent-light: #ffe8a3;
+$accent-dark: #d4a51e;
+
+$success-color: #4caf50;
+$error-color: #f44336;
+$warning-color: #ff9800;
+$info-color: #2196f3;
+
+$bg-light: #fafafa;
+$bg-white: #ffffff;
+$text-primary: #1f1f1f;
+$text-secondary: #666666;
+$border-color: #e0e0e0;
+
+// ============================================
+// TYPOGRAPHY
+// ============================================
+$font-family-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-family-secondary: 'Playfair Display', serif;
+
+$font-size-h1: 3.5rem;
+$font-size-h2: 2.5rem;
+$font-size-h3: 1.8rem;
+$font-size-h4: 1.4rem;
+$font-size-h5: 1.2rem;
+$font-size-body: 1rem;
+$font-size-small: 0.875rem;
+
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.8;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// ============================================
+// SPACING
+// ============================================
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+$spacing-2xl: 4rem;
+
+// ============================================
+// BORDER RADIUS
+// ============================================
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+$border-radius-full: 50%;
+
+// ============================================
+// SHADOWS
+// ============================================
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+$shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.15);
+
+// ============================================
+// TRANSITIONS
+// ============================================
+$transition-fast: 150ms ease-out;
+$transition-normal: 300ms ease-out;
+$transition-slow: 500ms ease-out;
+
+// ============================================
+// Z-INDEX SYSTEM
+// ============================================
+$z-dropdown: 100;
+$z-sticky: 200;
+$z-modal: 300;
+$z-tooltip: 400;
+
+// ============================================
+// MIXINS
+// ============================================
+
+// Flexbox centered
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flexbox column
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+// Full width/height
+@mixin full-size {
+  width: 100%;
+  height: 100%;
+}
+
+// Smooth transition
+@mixin smooth-transition($property: all) {
+  transition: $property $transition-normal;
+}
+
+// Gradient background
+@mixin gradient-bg($color1: $primary-color, $color2: $accent-color) {
+  background: linear-gradient(135deg, $color1 0%, $color2 100%);
+}
+
+// Glassmorphism effect
+@mixin glass-effect($opacity: 0.1) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// Truncate text
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Multi-line truncate
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Aspect ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: calc(($height / $width) * 100%);
+  }
+}
+
+// Responsive text sizing
+@mixin responsive-font($mobile, $tablet, $desktop) {
+  font-size: $mobile;
+
+  @media (min-width: 768px) {
+    font-size: $tablet;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: $desktop;
+  }
+}
+
+// Responsive grid
+@mixin responsive-grid($mobile-cols, $tablet-cols, $desktop-cols, $gap: $spacing-md) {
+  display: grid;
+  grid-template-columns: repeat($mobile-cols, 1fr);
+  gap: $gap;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat($tablet-cols, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat($desktop-cols, 1fr);
+  }
+}
+
+// Button reset
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: 2px solid $accent-color;
+  }
+}
+
+// Hover effect
+@mixin hover-effect {
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+  }
+}
+
+// Premium heading
+@mixin premium-heading {
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-bold;
+  color: $primary-color;
+  letter-spacing: -0.5px;
+}
+
+// ============================================
+// ANIMATIONS
+// ============================================
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+// ============================================
+// UTILITY CLASSES
+// ============================================
+
+.fade-in {
+  animation: fadeIn $transition-normal forwards;
+}
+
+.slide-in-up {
+  animation: slideInUp $transition-normal forwards;
+}
+
+.slide-in-down {
+  animation: slideInDown $transition-normal forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft $transition-normal forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight $transition-normal forwards;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (min-width: 768px) {
+    padding: 0 $spacing-lg;
+  }
+}
+
+.text-truncate {
+  @include truncate;
+}
+
+.line-clamp-2 {
+  @include line-clamp(2);
+}
+
+.line-clamp-3 {
+  @include line-clamp(3);
+}

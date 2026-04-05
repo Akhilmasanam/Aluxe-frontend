@@ -1,0 +1,163 @@
+@import 'variables';
+
+.admin-orders-section {
+  padding: 2rem;
+  background: #fafafa;
+}
+
+.header-section {
+  margin-bottom: 2rem;
+
+  h1 {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .subtitle {
+    margin: 0;
+    color: #999;
+  }
+}
+
+.filter-section {
+  padding: 1.5rem !important;
+  margin-bottom: 2rem;
+}
+
+.filter-controls {
+  label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+
+    select {
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      flex: 0 0 200px;
+
+      &:focus {
+        outline: none;
+        border-color: #ffd764;
+      }
+    }
+  }
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+    font-weight: 600;
+    color: #666;
+    background: white;
+  }
+
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+  }
+
+  tr:hover {
+    background: #f5f5f5;
+  }
+}
+
+.status-select {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  &.status-pending {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ff9800;
+    border-color: #ff9800;
+  }
+
+  &.status-confirmed {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+    border-color: #4caf50;
+  }
+
+  &.status-shipped {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196f3;
+    border-color: #2196f3;
+  }
+
+  &.status-delivered {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+    border-color: #4caf50;
+  }
+
+  &.status-cancelled {
+    background: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+    border-color: #f44336;
+  }
+}
+
+.payment-badge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  &.payment-pending {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ff9800;
+  }
+
+  &.payment-completed {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+  }
+
+  &.payment-failed {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+  }
+}
+
+.view-btn {
+  padding: 0.5rem 0.75rem;
+  background: #e3f2fd;
+  color: #2196f3;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 200ms ease-out;
+
+  &:hover {
+    background: #bbdefb;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .orders-table {
+    font-size: 0.85rem;
+
+    th,
+    td {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+}
